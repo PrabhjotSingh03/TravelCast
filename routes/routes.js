@@ -1,11 +1,9 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const { Client } = require('@googlemaps/google-maps-services-js');
 
 const router = express.Router();
 
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
+const GOOGLE_PLACES_API_KEY = 'AIzaSyA5-NcZ6k10BAnfWLmmHlO1hFZO4aSmMWQ';
 
 router.get('/', async (req, res) => {
   res.render('index');
@@ -14,31 +12,57 @@ router.get('/', async (req, res) => {
 router.get('/search', async (req, res) => {
   const city = req.query.city;
 
-  // Fetch tourist places using Google Places API
+  // Fetch places using Google Places API text search
   const client = new Client({});
-  const placesResponse = await client.textSearch({
-    params: {
-      query: `tourist attractions in ${city}`,
-      key: AIzaSyA5-NcZ6k10BAnfWLmmHlO1hFZO4aSmMWQ,
-    },
-  });
-  const touristPlaces = placesResponse.data.results.slice(0, 5).map(place => ({
-    name: place.name,
-    address: place.formatted_address,
-    photos: place.photos ? place.photos.slice(0, 4).map(photo => photo.photo_reference) : []
-  }));
+  try {
+    const placesResponse = await client.textSearch({
+      params: {
+        query: `${city}`,
+        key: GOOGLE_PLACES_API_KEY,
+      },
+    });
 
-  // Fetch weather information using OpenWeather API
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=9cc3f3aee28ac952d5d4b661c8d1332c`;
-  const weatherResponse = await fetch(weatherUrl);
-  const Data = await weatherResponse.json();
-  const weather = {
-    temperature: Data.main.temp,
-    description: Data.weather[0].description,
-    icon: Data.weather[0].icon
-  };
+    const places = placesResponse.data.results.slice(0, 5).map(place => ({
+      name: place.name,
+      location: place.geometry.location,
+      address: place.formatted_address,
+    }));
 
-  res.json({ touristPlaces, weather });
+    res.json({ places });
+  } catch (error) {
+    console.error('Error fetching places:', error);
+    res.status(500).json({ error: 'Failed to fetch places.' });
+  }
+});
+
+router.get('/tourist_attractions/:lat/:lng', async (req, res) => {
+  const { lat, lng } = req.params;
+
+  // Fetch nearby tourist attractions using Google Places API nearby search
+  const client = new Client({});
+  try {
+    const placesResponse = await client.placesNearby({
+      params: {
+        location: `${lat},${lng}`,
+        radius: 5000, // 5000 meters (5 kilometers) radius around the selected city
+        key: GOOGLE_PLACES_API_KEY,
+        type: 'tourist_attraction', // Filter results to include only tourist attractions
+      },
+    });
+
+    const touristAttractions = placesResponse.data.results.slice(0, 5).map(attraction => ({
+      name: attraction.name,
+      location: attraction.geometry.location,
+      address: attraction.vicinity,
+    }));
+
+    res.json({ touristAttractions });
+  } catch (error) {
+    console.error('Error fetching nearby tourist attractions:', error);
+    res.status(500).json({ error: 'Failed to fetch nearby tourist attractions.' });
+  }
 });
 
 module.exports = router;
+
+

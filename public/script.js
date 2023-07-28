@@ -22,19 +22,44 @@ searchInput.addEventListener('input', async (e) => {
   }
 });
 
+function displayPlaces(places) {
+  if (markers.length > 0) {
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
+  }
+
+  places.forEach(place => {
+    const marker = new google.maps.Marker({
+      position: place.location,
+      map: map,
+      title: place.name,
+      icon: {
+        url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      },
+    });
+    markers.push(marker);
+  });
+}
+
+async function displayTouristAttractions(lat, lng) {
+  try {
+    const response = await fetch(`/tourist_attractions/${lat}/${lng}`);
+    const data = await response.json();
+    const touristAttractions = data.touristAttractions;
+    displayPlaces(touristAttractions);
+  } catch (error) {
+    console.error('Error fetching nearby tourist attractions:', error);
+  }
+}
+
 function getPlaceDetails(placeId) {
   if (markers.length > 0) {
     markers.forEach(marker => marker.setMap(null));
     markers = [];
   }
 
-  const request = {
-    placeId: placeId,
-    fields: ['name', 'formatted_address', 'geometry', 'photos'],
-  };
-
   const service = new google.maps.places.PlacesService(document.createElement('div'));
-  service.getDetails(request, (placeDetails, status) => {
+  service.getDetails({ placeId }, (placeDetails, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       const location = placeDetails.geometry.location;
       map.setCenter(location);
@@ -45,6 +70,9 @@ function getPlaceDetails(placeId) {
         title: placeDetails.name,
       });
       markers.push(marker);
+
+      // Display nearby tourist attractions for the selected place
+      displayTouristAttractions(location.lat(), location.lng());
     }
   });
 }
@@ -56,7 +84,6 @@ function initMap() {
   });
 }
 
-// Load Google Maps API asynchronously with a callback
 function loadGoogleMapsScript() {
   const script = document.createElement('script');
   script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA5-NcZ6k10BAnfWLmmHlO1hFZO4aSmMWQ&libraries=places&callback=initMap`;
