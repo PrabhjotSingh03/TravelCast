@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const { Client } = require('@googlemaps/google-maps-services-js');
 
 const app = express();
 const port = 8000;
@@ -64,10 +65,7 @@ app.get('/tourist/:place_id', async (req, res) => {
   }
 });
 
-
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
-});                                                                      
-
-
+});
