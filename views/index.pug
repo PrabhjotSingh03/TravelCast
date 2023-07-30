@@ -1,11 +1,22 @@
 doctype html
 html
   head
-    title Tourist App
+    title TravelCast
+    link(rel='stylesheet', href='style.css')
   body
-    h1 Tourist App
-    label(for='search') Search for a location:
-    input#search(type='text', placeholder='Enter a location')
-    ul#results
-    #map(style='height: 400px;')
-    script(src='script.js')
+    header
+      h1 TravelCast
+    main
+    div#flex-container
+      div#search-container
+        p#search-label Search for a location:
+        input#search(type='text', placeholder='Enter a location')
+        div#results-container
+          ul#results
+          h2 Nearby Tourist Attractions
+          ul#places-list
+      div#map-container
+        div#mapCont
+          #map
+    footer
+  script(src='script.js')
