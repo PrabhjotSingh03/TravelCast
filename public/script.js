@@ -22,8 +22,6 @@ searchInput.addEventListener('input', async (e) => {
   }
 });
 
-// ... (previous code)
-
 const placesList = document.getElementById('places-list');
 
 function displayPlaces(places) {
@@ -71,8 +69,6 @@ function displayPlaces(places) {
     placesList.appendChild(listItem);
   });
 }
-
-// ... (remaining code)
 
 async function displayTouristAttractions(lat, lng) {
   try {
