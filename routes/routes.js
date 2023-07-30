@@ -62,7 +62,7 @@ router.get('/tourist_attractions/:lat/:lng', async (req, res) => {
     const placesResponse = await client.placesNearby({
       params: {
         location: `${lat},${lng}`,
-        radius: 10000, // 5000 meters (5 kilometers) radius around the selected city
+        radius: 5000,
         key: GOOGLE_PLACES_API_KEY,
         type:[ 'tourist_attraction', 'amusement_park', 'aquarium', 'art_gallery', 'bowling_alley', 'cafe', 'campground',
         'zoo', 'shopping_mall', 'restaurant', 'museum', 'movie_theater', 'point_of_interest', 'landmark',
