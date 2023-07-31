@@ -47,7 +47,19 @@ function displayPlaces(places) {
 
     // Show an info window with the place's name when clicked on the marker
     const infoWindow = new google.maps.InfoWindow({
-      content: `<div><strong>${place.name}</strong></div><div>${place.address}</div><div>Rating: ${place.rating}</div><div>${place.type}</div>`
+      content: `
+                <div class="info-window-content">
+                  <div>
+                    <img src="${place.icon}" alt="${place.name}" width="30" height="30" />
+                  </div>
+                  <div>
+                    <h1>${place.name}</h1>
+                  </div>
+                  <div>${place.address}</div>
+                  <div>Rating: ${place.rating}</div>
+                  <div>Type: ${place.type[0]}</div>
+                </div>
+              `   
     });
 
     marker.addListener('click', () => {

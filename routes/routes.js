@@ -39,6 +39,7 @@ router.get('/search', async (req, res) => {
     });
 
     const places = placesResponse.data.results.slice(0, 5).map(place => ({
+      icon: place.icon,
       name: place.name,
       location: place.geometry.location,
       address: place.formatted_address,
@@ -71,6 +72,7 @@ router.get('/tourist_attractions/:lat/:lng', async (req, res) => {
     });
 
     const touristAttractions = placesResponse.data.results.slice(0, 10000).map(attraction => ({
+      icon: attraction.icon,
       name: attraction.name,
       location: attraction.geometry.location,
       address: attraction.vicinity,

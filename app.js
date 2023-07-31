@@ -9,9 +9,7 @@ app.use(express.static('public'));
 
 app.use('/', routes);
 
-
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
