@@ -25,6 +25,7 @@ searchInput.addEventListener('input', async (e) => {
 const placesList = document.getElementById('places-list');
 
 let openInfoWindow = null;
+
 function displayPlaces(places) {
   // Clear the existing list of places
   placesList.innerHTML = '';
@@ -50,7 +51,7 @@ function displayPlaces(places) {
       content: `
                 <div class="info-window-content">
                   <div>
-                    <img src="${place.icon}" alt="${place.name}" width="30" height="30" />
+                    <img src="${place.icon}" alt="${place.name}" width="30" height="30" /><div class="weathericon">Weather: <img src="http://openweathermap.org/img/w/${place.weatherIcon}.png" alt="Weather" /></div>
                   </div>
                   <div>
                     <h1>${place.name}</h1>
@@ -58,6 +59,10 @@ function displayPlaces(places) {
                   <div>${place.address}</div>
                   <div>Rating: ${place.rating}</div>
                   <div>Type: ${place.type[0]}</div>
+                  <div>Temperature: ${place.temperature} °C</div>
+                  <div>Main: ${place.main}</div>
+                  <div>Description: ${place.description}</div>
+                  <div>Humidity: ${place.humidity}</div>
                 </div>
               `   
     });
@@ -101,11 +106,41 @@ function displayPlaces(places) {
   });
 }
 
+async function getWeatherData(lat, lng) {
+  try {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${OPENWEATHERMAP_API_KEY}`);
+    const data = await response.json();
+
+    const weatherData = {
+      icon: data.weather[0].icon,
+      temperature: Math.floor(data.main.temp - 273.15),
+      main: data.weather[0].main,
+      description: data.weather[0].description,
+      humidity: data.main.humidity,
+    };
+
+    return weatherData;
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    return null;
+  }
+}
+
 async function displayTouristAttractions(lat, lng) {
   try {
     const response = await fetch(`/tourist_attractions/${lat}/${lng}`);
     const data = await response.json();
     const touristAttractions = data.touristAttractions;
+    
+    for (const attraction of touristAttractions) {
+      const weatherData = await getWeatherData(attraction.location.lat, attraction.location.lng);
+      attraction.weatherIcon = weatherData.icon;
+      attraction.temperature = weatherData.temperature;
+      attraction.main = weatherData.main;
+      attraction.description = weatherData.description;
+      attraction.humidity = weatherData.humidity;
+    }
+
     displayPlaces(touristAttractions);
   } catch (error) {
     console.error('Error fetching nearby tourist attractions:', error);
@@ -231,6 +266,7 @@ function clearMarkers() {
   markers.forEach(marker => marker.setMap(null));
   markers = [];
 }
+
 
 function loadGoogleMapsScript() {
   const script = document.createElement('script');
