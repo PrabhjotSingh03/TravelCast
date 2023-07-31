@@ -24,7 +24,7 @@ searchInput.addEventListener('input', async (e) => {
 
 const placesList = document.getElementById('places-list');
 
-let openInfoWindow = null;
+let openInfoWindow = null;//used to remove previously clicked marker
 
 function displayPlaces(places) {
   // Clear the existing list of places
@@ -192,7 +192,7 @@ async function getUserLocation() {
     }
   });
 }
-let lastClickedMarker = null;
+let lastClickedMarker = null;//used to remove previously clicked marker
 
 function initMap() {
   getUserLocation()
@@ -266,7 +266,6 @@ function clearMarkers() {
   markers.forEach(marker => marker.setMap(null));
   markers = [];
 }
-
 
 function loadGoogleMapsScript() {
   const script = document.createElement('script');
