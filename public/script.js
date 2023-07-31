@@ -46,7 +46,7 @@ function displayPlaces(places) {
 
     // Show an info window with the place's name when clicked on the marker
     const infoWindow = new google.maps.InfoWindow({
-      content: place.name,
+      content: `<div><strong>${place.name}</strong></div><div>${place.address}</div><div>Rating: ${place.rating}</div><div>${place.type}</div>`
     });
 
     marker.addListener('click', () => {
@@ -127,6 +127,7 @@ async function getUserLocation() {
   });
 }
 let lastClickedMarker = null;
+
 
 function initMap() {
   getUserLocation()

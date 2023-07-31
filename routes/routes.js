@@ -44,6 +44,8 @@ router.get('/search', async (req, res) => {
       name: place.name,
       location: place.geometry.location,
       address: place.formatted_address,
+      rating: place.user_ratings_total,
+      types: place.types[0],
     }));
 
     res.json({ places });
@@ -66,7 +68,7 @@ router.get('/tourist_attractions/:lat/:lng', async (req, res) => {
         key: GOOGLE_PLACES_API_KEY,
         type:[ 'tourist_attraction', 'amusement_park', 'aquarium', 'art_gallery', 'bowling_alley', 'cafe', 'campground',
         'zoo', 'shopping_mall', 'restaurant', 'museum', 'movie_theater', 'point_of_interest', 'landmark',
-        'natural_feature', 'place_of_worship', 'town_square', 'bakery' ]
+        'natural_feature', 'place_of_worship', 'town_square', 'bakery', 'establishment', 'food' ]
       },
     });
 
@@ -74,6 +76,8 @@ router.get('/tourist_attractions/:lat/:lng', async (req, res) => {
       name: attraction.name,
       location: attraction.geometry.location,
       address: attraction.vicinity,
+      rating: attraction.rating,
+      type: attraction.types,
     }));
 
     res.json({ touristAttractions });
@@ -84,5 +88,3 @@ router.get('/tourist_attractions/:lat/:lng', async (req, res) => {
 });
 
 module.exports = router;
-
-
