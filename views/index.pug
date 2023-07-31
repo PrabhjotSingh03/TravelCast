@@ -23,17 +23,24 @@ html
         div#intromap-container
           div#intromapCont
             img(src='/images/toronto_map.jpg' alt='toronto')
+      section#img-container
+        div#imgCont
+          img(src='/images/collage.png', alt="")
+      section#guide-continer 
+        h2.guidehead Unveil wonders nearby! Choose a city or map your way to find enchanting attractions.
       section#flex-container
         div#search-container
-          p#search-label Search for a location:
-          input#search(type='text', placeholder='Enter a location')
+          p#search-label Search a City:
+          input#search(type='text', placeholder='Enter a City')
           div#results-container
             ul#results
-          h2 Nearby Tourist Attractions
+          h3.result-container Nearby Tourist Attractions
           div#places-list-container
             ul#places-list
         div#map-container
           div#mapCont
             #map
+            h3.instruction *Chase the thrill of discovery: Red markers unlock place details, while the Blue Marker is you.
     footer
+      p © Copyright | TravelCast | Prabhjot Singh Sains | 2023.
   script(src='script.js')

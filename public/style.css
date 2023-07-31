@@ -34,7 +34,8 @@ header{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  margin-top: 1em;
+  margin-bottom: 7em;
 }
 #introhead-container {
   width: 25%;
@@ -48,18 +49,52 @@ header{
     text-align: center;
     padding-bottom: 2em;
     color: #028090;
+    animation-duration: 5s;
+    animation-name: slidein;
 }
 .introhead{
   font-size: 1.7em;
   margin: 0 auto;
   text-transform: uppercase;
   color:#FF9505;
+  animation-duration: 7s;
+  animation-name: slideinhead;
 }
 .p2 {
   font-size: 1.5em;
   padding-top: 2.5em;
   text-align: center;
   color: #028090;
+  animation-duration: 9s;
+  animation-name: slidein;
+}
+@keyframes slidein {
+  from {
+    margin-left: -300px;
+    width: 100%;
+  }
+  to {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+@keyframes slideinhead {
+  from {
+    margin-left: -300px;
+    width: 100%;
+  }
+  to {
+    margin-left: 78px;
+    width: 100%;
+  }
+}
+#img-container{
+  max-width: 1210px;
+  margin: 0 auto;
+}
+#imgCont img{
+  width: 100%;
+  height: auto;
 }
 #intromap-container {
   display: flex;
@@ -76,25 +111,32 @@ header{
   height:500px;
   object-fit: cover;
 }
-
+#guide-continer{
+  max-width: 100%;
+  text-align: center;
+  margin-top: 7em;
+}
+.guidehead{
+  font-size: 1.7em;
+  margin: 0 auto;
+  text-transform: uppercase;
+  color:#028090;
+}
 #flex-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  margin-top: 7em;
 }
-
 #search-container {
   width: 30%;
   display: flex;
   flex-direction: column;
 }
-
 #search-label {
   font-size: 1.2rem;
   margin: 0 auto;
 }
-
 #search {
   padding: 0.5rem;
   font-size: 1rem;
@@ -104,7 +146,10 @@ header{
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
+.result-container{
+  color:#FF9505;
+  font-size: 1.2em;
+}
 #results-container {
   width: 100%;
   margin-bottom: 1rem;
@@ -112,13 +157,11 @@ header{
   overflow-y: auto;
   scroll-behavior: smooth;
 }
-
 #results, #places-list {
   list-style: none;
   padding: 0;
-  width: 100%;
+  width: 95%;
 }
-
 #results li, #places-list li{
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -127,47 +170,31 @@ header{
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
-#results li:hover, #places-list:hover {
-  background-color: #f0f0f0;
-}
-
-#results li img, #places-list img {
-  max-width: 100px;
-  max-height: 80px;
-  display: block;
-  margin: 0 auto;
+#results li:hover, #places-list li:hover {
+  background-color: #fd2121;
+  color: #fff;
 }
 
 #map-container {
   display: flex;
   flex-direction: column;
   width: 60%;
-  padding-top: 25px;
+  padding-top: 32px;
 }
-
 #mapCont {
   width: 100%;
   height: 500px;
   border: solid 1px #ccc;
+  box-shadow: 0px 2px 5px 0px black
 }
-
 #map {
   width: 100%;
   height: 100%;
 }
-
 #places-list-container {
   max-height: 400px; 
   overflow-y: auto;
   scroll-behavior: smooth;
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
 }
 
 /* CSS for the infoWindow content */
@@ -175,34 +202,28 @@ footer {
   font-family: Arial, sans-serif;
   color: #333;
 }
-
 .info-window-content div {
   margin-bottom: 5px;
 }
-
 .info-window-content h1 {
   font-size: 1.2em;
   color: #0066cc;
 }
-
 .info-window-content img {
   width: 20px;
   height: 20px;
   margin-top: 5px;
 }
-
 #places-list-container::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 }
-
 #places-list-container::-webkit-scrollbar
 {
 	width: 10px;
 	background-color: #F5F5F5;
 }
-
 #places-list-container::-webkit-scrollbar-thumb
 {
 	background-color: #F90;	
@@ -215,7 +236,53 @@ footer {
 											  transparent 75%,
 											  transparent)
 }
-
 .weathericon{
   float: right;
+}
+.instruction{
+  font-size:1em;  
+}
+footer {
+  background-color: #333;
+  margin-top: 4em;
+  color: #fff;
+  padding: 2px 2px 2px 40px;
+}
+@media screen and (max-width: 500px) {
+  #intromap-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    position: relative;
+    width: 90%;
+  }
+  #introhead-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4em;
+  }
+  .p1 {
+    padding-top: 1em;
+    text-align: center;
+    padding-bottom: 2em;
+  }
+  .p2 {
+    padding-top: 1em;
+    text-align: center;
+  }
+  #map-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding-top: 32px;
+  }
+  #search-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 958px) {
+
 }
