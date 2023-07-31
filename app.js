@@ -6,6 +6,7 @@ const port = 8000;
 
 app.set('view engine', 'pug');
 app.use(express.static('public'));
+app.use(express.static('images'));
 
 app.use('/', routes);
 

@@ -1,26 +1,39 @@
 doctype html
 html
   head
-    title TravelCast
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    meta(name="theme-color", content="#000000")
+    title #{title} | TravelCast
     link(rel='stylesheet', href='style.css')
     script.
       const GOOGLE_PLACES_API_KEY = '#{process.env.GOOGLE_PLACES_API_KEY}';
       const OPENWEATHERMAP_API_KEY = '#{process.env.OPENWEATHERMAP_API_KEY}';
   body
     header
-      h1 TravelCast
+      h1.banner 
+        a(href='/')
+          span.TravelCast TravelCast
     main
-    div#flex-container
-      div#search-container
-        p#search-label Search for a location:
-        input#search(type='text', placeholder='Enter a location')
-        div#results-container
-          ul#results
-        h2 Nearby Tourist Attractions
-        div#places-list-container
-          ul#places-list
-      div#map-container
-        div#mapCont
-          #map
+      section#intro-container
+        div#introhead-container
+          p.p1 Traveling to your favorite destination just got easier!
+          h1.introhead TravelCast
+          p.p2  Unveil Your Dream Destination & Forecast the Weather in One Magical Quest!
+        div#intromap-container
+          div#intromapCont
+            img(src='/images/toronto_map.jpg' alt='toronto')
+      section#flex-container
+        div#search-container
+          p#search-label Search for a location:
+          input#search(type='text', placeholder='Enter a location')
+          div#results-container
+            ul#results
+          h2 Nearby Tourist Attractions
+          div#places-list-container
+            ul#places-list
+        div#map-container
+          div#mapCont
+            #map
     footer
   script(src='script.js')
