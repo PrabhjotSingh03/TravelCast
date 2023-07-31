@@ -5,8 +5,6 @@ const router = express.Router();
 
 require('dotenv').config();
 
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-
 router.get('/', async (req, res) => {
   res.render('index');
 });
@@ -18,7 +16,7 @@ router.get('/autocomplete/:query', async (req, res) => {
     const response = await axios.get('https://maps.googleapis.com/maps/api/place/autocomplete/json', {
       params: {
         input: query,
-        key: GOOGLE_PLACES_API_KEY,
+        key: process.env.GOOGLE_PLACES_API_KEY,
       },
     });
     res.json(response.data.predictions);
@@ -36,7 +34,7 @@ router.get('/search', async (req, res) => {
     const placesResponse = await client.textSearch({
       params: {
         query: `${city}`,
-        key: GOOGLE_PLACES_API_KEY,
+        key: process.env.GOOGLE_PLACES_API_KEY,
       },
     });
 
@@ -65,7 +63,7 @@ router.get('/tourist_attractions/:lat/:lng', async (req, res) => {
       params: {
         location: `${lat},${lng}`,
         radius: 5000,
-        key: GOOGLE_PLACES_API_KEY,
+        key: process.env.GOOGLE_PLACES_API_KEY,
         type:[ 'tourist_attraction', 'amusement_park', 'aquarium', 'art_gallery', 'bowling_alley', 'cafe', 'campground',
         'zoo', 'shopping_mall', 'restaurant', 'museum', 'movie_theater', 'point_of_interest', 'landmark',
         'natural_feature', 'place_of_worship', 'town_square', 'bakery', 'establishment', 'food' ]

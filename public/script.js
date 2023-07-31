@@ -24,6 +24,7 @@ searchInput.addEventListener('input', async (e) => {
 
 const placesList = document.getElementById('places-list');
 
+let openInfoWindow = null;
 function displayPlaces(places) {
   // Clear the existing list of places
   placesList.innerHTML = '';
@@ -50,7 +51,16 @@ function displayPlaces(places) {
     });
 
     marker.addListener('click', () => {
+      // Close the previously opened InfoWindow, if any
+      if (openInfoWindow) {
+        openInfoWindow.close();
+      }
+
+      // Open the current InfoWindow
       infoWindow.open(map, marker);
+
+      // Store a reference to the currently opened InfoWindow
+      openInfoWindow = infoWindow;
     });
 
     markers.push(marker);
@@ -59,11 +69,20 @@ function displayPlaces(places) {
     const listItem = document.createElement('li');
     listItem.textContent = place.name;
     listItem.addEventListener('click', () => {
+      // Close the previously opened InfoWindow, if any
+      if (openInfoWindow) {
+        openInfoWindow.close();
+      }
+
       // Center the map on the selected place when clicked on the list item
       map.setCenter(place.location);
       map.setZoom(15);
-      // Show the marker's info window when a list item is clicked
+
+      // Open the InfoWindow for the clicked place
       infoWindow.open(map, marker);
+
+      // Store a reference to the currently opened InfoWindow
+      openInfoWindow = infoWindow;
     });
 
     placesList.appendChild(listItem);
@@ -127,7 +146,6 @@ async function getUserLocation() {
   });
 }
 let lastClickedMarker = null;
-
 
 function initMap() {
   getUserLocation()
@@ -204,7 +222,7 @@ function clearMarkers() {
 
 function loadGoogleMapsScript() {
   const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA5-NcZ6k10BAnfWLmmHlO1hFZO4aSmMWQ&libraries=places&callback=initMap`;
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_PLACES_API_KEY}&libraries=places&callback=initMap`;
   script.defer = true;
   script.async = true;
   document.head.appendChild(script);

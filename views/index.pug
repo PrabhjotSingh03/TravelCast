@@ -3,6 +3,9 @@ html
   head
     title TravelCast
     link(rel='stylesheet', href='style.css')
+    script.
+      const GOOGLE_PLACES_API_KEY = '#{process.env.GOOGLE_PLACES_API_KEY}';
+      const OPENWEATHERMAP_API_KEY = '#{process.env.OPENWEATHERMAP_API_KEY}';
   body
     header
       h1 TravelCast
