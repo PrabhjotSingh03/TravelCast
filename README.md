@@ -9,6 +9,7 @@ Table of Contents:
     <li>APIs Used</li>
     <li>Features</li>
     <li>Usage</li>
+    <li>Troubleshooting:</li>
 </ul>
 <h3>-> Introduction:</h3>
 <p>Are you a travel enthusiast looking to discover new and exciting tourist places? TravelCast is here to help you! TravelCast web app provides a user-friendly interface to find nearby tourist attractions, complete with essential details like names, addresses and, ratings. Additionally, TravelCast enhance your trip planning by integrating real-time weather information for your chosen destination.</p>
@@ -27,7 +28,7 @@ The project utilizes the following APIs:
 </li>
 </ul>
 
-<h3>Features:</h3>
+<h3>-> Features:</h3>
 TravelCast offers the following key features:
 <ul>
 <li>Tourist Place Search: Users can search for tourist places and attractions near their location, with detailed information for each place.</li>
@@ -39,7 +40,7 @@ TravelCast offers the following key features:
 <li>User-Friendly Interface: The website is designed with a simple and intuitive user interface, ensuring a seamless and enjoyable user experience.</li>
 </ul>
 
-<h3>Usage:</h3>
+<h3>-> Usage:</h3>
 TravelCast is simple to use:
 <ul>
     <li>Upon loading the website, the user will be prompted to allow access to their location.</li>
@@ -49,4 +50,10 @@ TravelCast is simple to use:
     <li>Explore different places and weather conditions to plan your next adventure with confidence!</li>
     <li>Red Markers are for places, Green Marker is for the location selected by using map, and Blue marker is your location.</li>
 </ul>
-*Note: Sometime this code will not run in the browser. So, just run in incognito window.
+
+<h3>-> Troubleshooting:</h3>
+<p>If you encounter any issues running the website in a regular browser, try running it in an incognito window to avoid any potential conflicts with browser extensions or caching.<p>
+
+<h2>Start exploring the world with TravelCast - Your companion to finding tourist places and experiencing them like never before!</h2>
+
+<h1>Happy traveling!</h1>
