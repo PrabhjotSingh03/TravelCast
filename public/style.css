@@ -5,31 +5,36 @@ body {
   margin: 0;
   padding: 0;
 }
-a{
+
+a {
   text-decoration: none;
   color: #000000;
 }
-header{
-  display:flex;
-  flex-flow:row wrap;
-  justify-content:space-between;
+
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
   overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #333;
 }
-.banner a{
+
+.banner a {
   font-size: 30px;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
-  padding:15px 10px 10px 10px;
+  padding: 15px 10px 10px 10px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-transform: uppercase;
-} 
-.TravelCast{
-    color:#ef3844;
 }
+
+.TravelCast {
+  color: #ef3844;
+}
+
 #intro-container {
   display: flex;
   justify-content: space-evenly;
@@ -37,29 +42,33 @@ header{
   margin-top: 1em;
   margin-bottom: 7em;
 }
+
 #introhead-container {
   width: 25%;
   display: flex;
   flex-direction: column;
   margin-top: 4em;
 }
+
 .p1 {
-    font-size: 1.5em;
-    padding-top: 2.5em;
-    text-align: center;
-    padding-bottom: 2em;
-    color: #028090;
-    animation-duration: 5s;
-    animation-name: slidein;
+  font-size: 1.5em;
+  padding-top: 2.5em;
+  text-align: center;
+  padding-bottom: 2em;
+  color: #028090;
+  animation-duration: 5s;
+  animation-name: slidein;
 }
-.introhead{
+
+.introhead {
   font-size: 1.7em;
   margin: 0 auto;
   text-transform: uppercase;
-  color:#FF9505;
+  color: #FF9505;
   animation-duration: 7s;
   animation-name: slideinhead;
 }
+
 .p2 {
   font-size: 1.5em;
   padding-top: 2.5em;
@@ -68,34 +77,41 @@ header{
   animation-duration: 9s;
   animation-name: slidein;
 }
+
 @keyframes slidein {
   from {
     margin-left: -300px;
     width: 100%;
   }
+
   to {
     margin-left: 0px;
     width: 100%;
   }
 }
+
 @keyframes slideinhead {
   from {
     margin-left: -300px;
     width: 100%;
   }
+
   to {
     margin-left: 78px;
     width: 100%;
   }
 }
-#img-container{
+
+#img-container {
   max-width: 1210px;
   margin: 0 auto;
 }
-#imgCont img{
+
+#imgCont img {
   width: 100%;
   height: auto;
 }
+
 #intromap-container {
   display: flex;
   flex-direction: column;
@@ -103,40 +119,48 @@ header{
   position: relative;
   width: 60%;
 }
-#intromapCont{
+
+#intromapCont {
   box-shadow: 0px 2px 5px 0px black
 }
+
 #intromapCont img {
   width: 100%;
-  height:500px;
+  height: 500px;
   object-fit: cover;
 }
-#guide-continer{
+
+#guide-continer {
   max-width: 100%;
   text-align: center;
   margin-top: 7em;
 }
-.guidehead{
+
+.guidehead {
   font-size: 1.7em;
   margin: 0 auto;
   text-transform: uppercase;
-  color:#028090;
+  color: #028090;
 }
+
 #flex-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin-top: 7em;
 }
+
 #search-container {
   width: 30%;
   display: flex;
   flex-direction: column;
 }
+
 #search-label {
   font-size: 1.2rem;
   margin: 0 auto;
 }
+
 #search {
   padding: 0.5rem;
   font-size: 1rem;
@@ -146,23 +170,29 @@ header{
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-.result-container{
-  color:#FF9505;
+
+.result-container {
+  color: #FF9505;
   font-size: 1.2em;
 }
+
 #results-container {
   width: 100%;
   margin-bottom: 1rem;
-  max-height: 200px; 
+  max-height: 200px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
-#results, #places-list {
+
+#results,
+#places-list {
   list-style: none;
   padding: 0;
   width: 95%;
 }
-#results li, #places-list li{
+
+#results li,
+#places-list li {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -170,7 +200,9 @@ header{
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-#results li:hover, #places-list li:hover {
+
+#results li:hover,
+#places-list li:hover {
   background-color: #fd2121;
   color: #fff;
 }
@@ -181,18 +213,21 @@ header{
   width: 60%;
   padding-top: 32px;
 }
+
 #mapCont {
   width: 100%;
   height: 500px;
   border: solid 1px #ccc;
   box-shadow: 0px 2px 5px 0px black
 }
+
 #map {
   width: 100%;
   height: 100%;
 }
+
 #places-list-container {
-  max-height: 400px; 
+  max-height: 400px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
@@ -202,53 +237,60 @@ header{
   font-family: Arial, sans-serif;
   color: #333;
 }
+
 .info-window-content div {
   margin-bottom: 5px;
 }
+
 .info-window-content h1 {
   font-size: 1.2em;
   color: #0066cc;
 }
+
 .info-window-content img {
   width: 20px;
   height: 20px;
   margin-top: 5px;
 }
-#places-list-container::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
+
+#places-list-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
 }
-#places-list-container::-webkit-scrollbar
-{
-	width: 10px;
-	background-color: #F5F5F5;
+
+#places-list-container::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
 }
-#places-list-container::-webkit-scrollbar-thumb
-{
-	background-color: #F90;	
-	background-image: -webkit-linear-gradient(45deg,
-	                                          rgba(255, 255, 255, .2) 25%,
-											  transparent 25%,
-											  transparent 50%,
-											  rgba(255, 255, 255, .2) 50%,
-											  rgba(255, 255, 255, .2) 75%,
-											  transparent 75%,
-											  transparent)
+
+#places-list-container::-webkit-scrollbar-thumb {
+  background-color: #F90;
+  background-image: -webkit-linear-gradient(45deg,
+      rgba(255, 255, 255, .2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, .2) 50%,
+      rgba(255, 255, 255, .2) 75%,
+      transparent 75%,
+      transparent)
 }
-.weathericon{
+
+.weathericon {
   float: right;
 }
-.instruction{
-  font-size:1em;  
+
+.instruction {
+  font-size: 1em;
 }
+
 footer {
   background-color: #333;
   margin-top: 4em;
   color: #fff;
   padding: 2px 2px 2px 40px;
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 650px) {
   #intromap-container {
     display: flex;
     flex-direction: column;
@@ -256,33 +298,35 @@ footer {
     position: relative;
     width: 90%;
   }
+
   #introhead-container {
     width: 90%;
     display: flex;
     flex-direction: column;
     margin-top: 4em;
   }
+
   .p1 {
     padding-top: 1em;
     text-align: center;
     padding-bottom: 2em;
   }
+
   .p2 {
     padding-top: 1em;
     text-align: center;
   }
+
   #map-container {
     display: flex;
     flex-direction: column;
     width: 90%;
     padding-top: 32px;
   }
+
   #search-container {
     width: 90%;
     display: flex;
     flex-direction: column;
   }
-}
-@media screen and (max-width: 958px) {
-
 }
