@@ -298,11 +298,11 @@ footer {
 }
 
 footer p a{
-  color: #ef3844;
+  color: #FF9505;
 }
 
 footer p a:hover{
-  color: #FF9505;
+  color: #ef3844;
 }
 
 @media screen and (max-width: 650px) {
