@@ -23,7 +23,7 @@ header {
 }
 
 .banner{
-  margin: 20px 25px 20px;
+  margin:25px;
   align-items: center;
   display: flex;
 }
@@ -295,6 +295,14 @@ footer {
   margin-top: 4em;
   color: #fff;
   padding: 2px 2px 2px 40px;
+}
+
+footer p a{
+  color: #ef3844;
+}
+
+footer p a:hover{
+  color: #FF9505;
 }
 
 @media screen and (max-width: 650px) {
